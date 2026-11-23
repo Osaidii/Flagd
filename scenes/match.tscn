@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://65yassg2f5h0"]
+
+[ext_resource type="Script" uid="uid://dxrm1hnk1nnld" path="res://scripts/match.gd" id="1_80q71"]
+[ext_resource type="Texture2D" path="res://storage/flags/ru.png" id="2_t0cgm"]
+[ext_resource type="FontFile" uid="uid://dy024if11mdts" path="res://assets/Font.ttf" id="3_5rc6j"]
+[ext_resource type="Script" uid="uid://ddy2340082md5" path="res://scripts/camera.gd" id="4_su80s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gy7si"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0cgm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Match" type="Control" unique_id=1292246568]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_80q71")
+
+[node name="Background" type="ColorRect" parent="." unique_id=564248934]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(6.738305e-07, 0.5949073, 0.7506277, 1)
+
+[node name="Flag Zone" type="Control" parent="." unique_id=959248287]
+anchors_preset = 0
+offset_left = 400.0
+offset_top = 130.0
+offset_right = 880.0
+offset_bottom = 370.0
+
+[node name="Flag" type="TextureRect" parent="Flag Zone" unique_id=1100720621]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t0cgm")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Name Zone" type="Control" parent="." unique_id=228440992]
+clip_children = 1
+anchors_preset = 0
+offset_left = 440.0
+offset_top = 32.0
+offset_right = 840.0
+offset_bottom = 92.0
+
+[node name="Box" type="Panel" parent="Name Zone" unique_id=1008132629]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gy7si")
+metadata/_edit_use_anchors_ = true
+
+[node name="Color" type="ColorRect" parent="Name Zone/Box" unique_id=1138692989]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 60.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Flag Name" type="Label" parent="Name Zone" unique_id=998961323]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_5rc6j")
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Answering Zone" type="Control" parent="." unique_id=1616491667]
+anchors_preset = 0
+offset_left = 355.0
+offset_top = 409.0
+offset_right = 925.0
+offset_bottom = 489.0
+
+[node name="Outline" type="Panel" parent="Answering Zone" unique_id=1520383165]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gy7si")
+
+[node name="Zone" type="ColorRect" parent="Answering Zone/Outline" unique_id=1793167670]
+layout_mode = 0
+offset_right = 570.0
+offset_bottom = 80.0
+color = Color(0, 0, 0, 1)
+
+[node name="Center" type="Panel" parent="Answering Zone" unique_id=199743748]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gy7si")
+
+[node name="Zone" type="ColorRect" parent="Answering Zone/Center" unique_id=1806892883]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text Input" type="LineEdit" parent="Answering Zone/Center" unique_id=2132829325]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.36508736, 0.36508825, 0.36508766, 0.6)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5rc6j")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_t0cgm")
+placeholder_text = "Country Name"
+alignment = 1
+context_menu_enabled = false
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Camera" type="Camera2D" parent="." unique_id=2127633667]
+unique_name_in_owner = true
+position = Vector2(640, 360)
+script = ExtResource("4_su80s")
+
+[connection signal="text_submitted" from="Answering Zone/Center/Text Input" to="." method="_on_answer_submitted"]

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b5unk6re2a6ax"]
+
+[node name="Files Missing" type="Node2D" unique_id=824103267]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=816805982]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)

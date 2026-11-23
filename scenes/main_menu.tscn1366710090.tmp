@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://xiwcw4ptloj7"]
+
+[ext_resource type="Script" uid="uid://bj036ei1co418" path="res://scripts/mainMenu.gd" id="1_l6cm7"]
+
+[node name="Main Menu" type="Node2D" unique_id=1962044948]
+script = ExtResource("1_l6cm7")
+
+[node name="Play Button" type="Button" parent="." unique_id=1058351999]
+unique_name_in_owner = true
+offset_left = 375.0
+offset_top = 275.0
+offset_right = 747.0
+offset_bottom = 352.0
+theme_override_font_sizes/font_size = 38
+text = "Play"
+
+[connection signal="pressed" from="Play Button" to="." method="_onPlayButtonPressed"]

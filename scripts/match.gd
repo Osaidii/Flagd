@@ -47,14 +47,14 @@ func load_flag(country_code) -> void:
 	flag_name.text = ""
 	flag_name.text = ""
 
-func check_answer(answer: String, current_country_code: String) -> bool:
-	print(answer, current_country_code)
+func check_answer(answer: String, country_code: String) -> bool:
+	print(answer, country_code)
 	var correct_answers := []
-	if not countries_json["countries"].has(current_country_code):
+	if not countries_json["countries"].has(country_code):
 		return false
-	correct_answers.append(countries_json["countries"][current_country_code])
-	if countries_json["aliases"].has(current_country_code):
-		for alias in countries_json["aliases"][current_country_code]:
+	correct_answers.append(countries_json["countries"][country_code])
+	if countries_json["aliases"].has(country_code):
+		for alias in countries_json["aliases"][country_code]:
 			correct_answers.append(alias)
 	for ans in correct_answers:
 		if answer.strip_edges().to_lower() == ans.to_lower():
@@ -91,6 +91,9 @@ func _ready() -> void:
 	load_flag(random_country_code())
 
 func _on_answer_submitted(new_text: String) -> void:
+	if !NetworkHandler.CONNECTED:
+		NetworkHandler.start_client()
+	NetworkHandler.send_to_server("answer", [new_text])
 	if check_answer(new_text, current_country_code):
 		await correct_answer()
 		load_flag(random_country_code())

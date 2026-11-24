@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://65yassg2f5h0"]
 
 [ext_resource type="Script" uid="uid://dxrm1hnk1nnld" path="res://scripts/match.gd" id="1_80q71"]
-[ext_resource type="Texture2D" path="res://storage/flags/ru.png" id="2_t0cgm"]
 [ext_resource type="FontFile" uid="uid://dy024if11mdts" path="res://assets/Font.ttf" id="3_5rc6j"]
 [ext_resource type="Script" uid="uid://ddy2340082md5" path="res://scripts/camera.gd" id="4_su80s"]
 
@@ -40,7 +39,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_t0cgm")
 expand_mode = 3
 stretch_mode = 5
 

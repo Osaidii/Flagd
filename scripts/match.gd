@@ -75,7 +75,6 @@ func wrong_answer() -> void:
 	await get_tree().create_timer(0.5).timeout
 	text_bg.color = Color(1.0, 1.0, 1.0, 1.0)
 	text_input.grab_focus()
-	text_input.clear()
 
 func random_country_code(exclude: String = "") -> String:
 	var codes: Array = countries_json["countries"].keys()
@@ -86,14 +85,17 @@ func random_country_code(exclude: String = "") -> String:
 	return codes.pick_random()
 
 func _ready() -> void:
-	validate_files()
-	countries_json = load_json()
-	load_flag(random_country_code())
+	pass
+
+func ask_server_for_list() -> Array:
+	var codes := []
+	NetworkHandler.send_to_server("request_codes", [])
+	return await codes
 
 func _on_answer_submitted(new_text: String) -> void:
 	if !NetworkHandler.CONNECTED:
 		NetworkHandler.start_client()
-	NetworkHandler.send_to_server("answer", [new_text])
+	NetworkHandler.send_to_server("check_answer", [new_text])
 	if check_answer(new_text, current_country_code):
 		await correct_answer()
 		load_flag(random_country_code())
